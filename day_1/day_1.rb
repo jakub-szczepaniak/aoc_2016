@@ -4,5 +4,11 @@ end
 
 class Location
   def initialize(x, y)
+    @x = x
+    @y = y
+  end
+
+  def taxi(x, y)
+    d(@x, @y, x, y)
   end
 end

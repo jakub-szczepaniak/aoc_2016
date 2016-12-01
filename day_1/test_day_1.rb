@@ -5,6 +5,7 @@ require_relative 'day_1.rb'
 
 class TaxiMetricTest < MiniTest::Test
   def test_distance_between_identical_base_points_is_zero
+    location_0 = Location.new(0, 0)
     assert_equal 0, d(0, 0, 0, 0)
   end
 

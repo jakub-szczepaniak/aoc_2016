@@ -25,3 +25,16 @@ class TaxiMetricTest < MiniTest::Test
     assert_equal 2, location.taxi(Location.new(0, 0))
   end
 end
+
+class TestFollowingDirections < MiniTest::Test
+  def test_initial_position_is_0_0
+    landing = Position.new
+    assert_equal 0, Location.new(0, 0).taxi(landing.location)
+  end
+
+  def test_initial_position_is_facing_north
+    landing = Position.new
+    assert_equal 'North', landing.face
+  end
+end
+

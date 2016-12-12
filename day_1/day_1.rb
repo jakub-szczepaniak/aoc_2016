@@ -16,8 +16,10 @@ class Position
     @location = Location.new(0, 0)
     @face = 'North'
   end
+
   def go(map_direction)
+    _, steps = map_direction.match(/(.)(.+)/).captures
     @face = 'East'
-    @location = Location.new(1, 0)
+    @location = Location.new(steps.to_i+@location.x, 0)
   end
 end

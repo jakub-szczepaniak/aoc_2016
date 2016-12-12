@@ -16,4 +16,8 @@ class Position
     @location = Location.new(0, 0)
     @face = 'North'
   end
+  def go(map_direction)
+    @face = 'East'
+    @location = Location.new(1, 0)
+  end
 end

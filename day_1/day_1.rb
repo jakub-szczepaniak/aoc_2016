@@ -21,9 +21,10 @@ class Position
     turn, steps = map_direction.match(/(.)(.+)/).captures
     if turn == 'R'
       @face = 'East'
-    else 
+      @location = Location.new(steps.to_i + @location.x, 0)
+    else
       @face = 'West'
+      @location = Location.new(-steps.to_i + @location.x, 0)
     end
-    @location = Location.new(steps.to_i + @location.x, 0)
   end
 end

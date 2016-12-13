@@ -50,4 +50,11 @@ class TestFollowingDirections < MiniTest::Test
 
     assert_equal 18, Location.new(0, 0).taxi(landing.location)
   end
+
+  def test_going_l_changes_initial_facing_to_west
+    landing = Position.new
+    landing.go('L1')
+
+    assert_equal 'West', landing.face
+  end
 end

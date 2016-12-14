@@ -38,7 +38,7 @@ class TestFollowingDirections < MiniTest::Test
     assert_equal 'North', landing.face
   end
 
-  def test_going_r_changes_initial_facing_to_east
+  def test_going_r_changes_facing_to_east
     landing = Position.new
     landing.go('R1')
 
@@ -52,7 +52,7 @@ class TestFollowingDirections < MiniTest::Test
     verify_coordinates(landing.location, 18, 0)
   end
 
-  def test_going_l_changes_initial_facing_to_west
+  def test_going_l_changes_facing_to_west
     landing = Position.new
     landing.go('L1')
 
@@ -62,8 +62,15 @@ class TestFollowingDirections < MiniTest::Test
   def test_going_l1_changes_location_to_minus_1
     landing = Position.new
     landing.go('L1')
-    
+
     verify_coordinates(landing.location, -1, 0)
+  end
+
+  def test_going_r1_when_facing_south_changes_facing_to_west
+    landing = Position.new('South')
+    landing.go('R1')
+
+    assert_equal 'West', landing.face
   end
 
   def verify_coordinates(location, x, y)

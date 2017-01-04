@@ -21,16 +21,17 @@ class Position
     turn, steps = map_direction.match(/(.)(.+)/).captures
     if turn == 'R' && face == 'North'
       @face = 'East'
-      @location = Location.new(steps.to_i + @location.x, 0)
-    elsif turn == 'L' && face == 'North'
-      @face = 'West'
-      @location = Location.new(-steps.to_i + @location.x, 0)
-    elsif turn == 'R' && face == 'South'
-      @face = 'West'
-      @location = Location.new(-steps.to_i + @location.x, 0)
+      multi = 1
     elsif turn == 'L' && face == 'South'
       @face = 'East'
-      @location = Location.new(steps.to_i + @location.x, 0)
+      multi = 1
+    elsif turn == 'L' && face == 'North'
+      @face = 'West'
+      multi = -1
+    elsif turn == 'R' && face == 'South'
+      @face = 'West'
+      multi = -1
     end
+    @location = Location.new(multi * steps.to_i + @location.x, 0)
   end
 end

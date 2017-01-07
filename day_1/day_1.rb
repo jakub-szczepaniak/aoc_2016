@@ -29,6 +29,7 @@ class Position
       multi[0] * steps.to_i + @location.x,
       multi[1] * steps.to_i + @location.y)
   end
+
   def turn_right
     if @face == 'North'
       @face = 'East'
@@ -44,6 +45,7 @@ class Position
       return [0, 1]
     end
   end
+  
   def turn_left
     if @face == 'North'
       @face = 'West'

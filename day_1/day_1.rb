@@ -1,4 +1,4 @@
-class Location
+class Coordinate
   attr_reader :x, :y
   def initialize(x, y)
     @x = x
@@ -11,10 +11,11 @@ class Location
 end
 
 class Position
-  attr_reader :location, :face
-  def initialize(face='North')
-    @location = Location.new(0, 0)
+  attr_reader :location, :face, :locations
+  def initialize(face = 'North')
+    @location = Coordinate.new(0, 0)
     @face = face
+    @locations = [@location]
   end
 
   def go(map_direction)
@@ -25,7 +26,7 @@ class Position
     elsif turn == 'L' 
       multi = turn_left
     end
-    @location = Location.new(
+    @location = Coordinate.new(
       multi[0] * steps.to_i + @location.x,
       multi[1] * steps.to_i + @location.y)
   end

@@ -5,24 +5,24 @@ require_relative 'day_1.rb'
 
 class TaxiMetricTest < MiniTest::Test
   def test_distance_between_identical_base_points_is_zero
-    location = Location.new(0, 0)
+    location = Coordinate.new(0, 0)
     assert_equal 0, location.taxi(location)
   end
 
   def test_distance_between_points_moved_on_y_axis_is_one
-    location = Location.new(0, 0)
+    location = Coordinate.new(0, 0)
 
-    assert_equal 1, location.taxi(Location.new(0, 1))
+    assert_equal 1, location.taxi(Coordinate.new(0, 1))
   end
 
   def test_distance_between_points_moved_on_x_axis_is_one
-    location = Location.new(1, 0)
-    assert_equal 1, location.taxi(Location.new(0, 0))
+    location = Coordinate.new(1, 0)
+    assert_equal 1, location.taxi(Coordinate.new(0, 0))
   end
 
   def test_distance_between_1_1_and_0_0_is_two
-    location = Location.new(1, 1)
-    assert_equal 2, location.taxi(Location.new(0, 0))
+    location = Coordinate.new(1, 1)
+    assert_equal 2, location.taxi(Coordinate.new(0, 0))
   end
 end
 
@@ -74,7 +74,14 @@ class TestFollowingDirections < MiniTest::Test
   end
 
   def verify_coordinates(location, x, y)
-    assert_equal 0, Location.new(x, y).taxi(location)
+    assert_equal 0, Coordinate.new(x, y).taxi(location)
+  end
+end
+
+class TestKeepingRoute < MiniTest::Test
+  def xtest_keeps_list_of_first_default_locations
+    landing = Position.new
+    assert_equal true, landing.locations.include?(Coordinate.new(0, 0))
   end
 end
 
@@ -88,6 +95,6 @@ class Test_SampleInput < MiniTest::Test
 
     instructions = load_instructions
     instructions.each { |command| landing.go(command) }
-    assert_equal 0, landing.location.taxi(Location.new(0, 0))
+    assert_equal 271, landing.location.taxi(Coordinate.new(0, 0))
   end
 end

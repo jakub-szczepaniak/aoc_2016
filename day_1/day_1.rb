@@ -17,10 +17,9 @@ class Position
     'East' => [1, 0],
     'West' => [-1, 0],
     'South' => [0, -1]}
-  def initialize(face = 'North', tracker = DefaultTracker.new)
+  def initialize(face = 'North')
     @location = Coordinates.new(0, 0)
     @face = face
-    @locations = [@location]
   end
 
   def go(map_direction)
@@ -30,7 +29,6 @@ class Position
     elsif turn == 'L' 
       multi = turn_left
     end
-    @tracker.track(@location, steps.to_i, multi)
     @location = Coordinates.new(
       multi[0] * steps.to_i + @location.x,
       multi[1] * steps.to_i + @location.y)
@@ -60,5 +58,6 @@ class Position
     elsif @face == 'West'
       @face = 'South'
     end
+    FACES[@face]
   end
 end

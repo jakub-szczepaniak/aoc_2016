@@ -5,24 +5,24 @@ require_relative 'day_1.rb'
 
 class TaxiMetricTest < MiniTest::Test
   def test_distance_between_identical_base_points_is_zero
-    location = Coordinate.new(0, 0)
+    location = Coordinates.new(0, 0)
     assert_equal 0, location.taxi(location)
   end
 
   def test_distance_between_points_moved_on_y_axis_is_one
-    location = Coordinate.new(0, 0)
+    location = Coordinates.new(0, 0)
 
-    assert_equal 1, location.taxi(Coordinate.new(0, 1))
+    assert_equal 1, location.taxi(Coordinates.new(0, 1))
   end
 
   def test_distance_between_points_moved_on_x_axis_is_one
-    location = Coordinate.new(1, 0)
-    assert_equal 1, location.taxi(Coordinate.new(0, 0))
+    location = Coordinates.new(1, 0)
+    assert_equal 1, location.taxi(Coordinates.new(0, 0))
   end
 
   def test_distance_between_1_1_and_0_0_is_two
-    location = Coordinate.new(1, 1)
-    assert_equal 2, location.taxi(Coordinate.new(0, 0))
+    location = Coordinates.new(1, 1)
+    assert_equal 2, location.taxi(Coordinates.new(0, 0))
   end
 end
 
@@ -74,7 +74,7 @@ class TestFollowingDirections < MiniTest::Test
   end
 
   def verify_coordinates(location, x, y)
-    assert_equal 0, Coordinate.new(x, y).taxi(location)
+    assert_equal 0, Coordinates.new(x, y).taxi(location)
   end
 end
 
@@ -95,6 +95,41 @@ class Test_SampleInput < MiniTest::Test
 
     instructions = load_instructions
     instructions.each { |command| landing.go(command) }
-    assert_equal 271, landing.location.taxi(Coordinate.new(0, 0))
+    assert_equal 271, landing.location.taxi(Coordinates.new(0, 0))
+  end
+
+  def xtest_sample_input_part_2
+
+    tracker = Tracker.new
+    landing = Position.new(face: 'North', tracker: tracker)
+
+    instructions = load_instructions
+    instructions.each { |command| landing.go(command) }
+  end
+end
+
+class TestTrackerDevise < MiniTest::Test
+  def test_add_move_1_step_west_adds_one_item_to_tracker
+    tracker = Tracker.new
+    start = Coordinates.new(0, 0)
+    step = 1
+    direction = [-1, 0]
+    tracker.track(start, step, direction)
+
+    assert_includes(tracker.visited, [0, 0])
+    assert_includes(tracker.visited, [-1, 0])
+  end
+
+  def test_example_from_exercise
+    tracker = Tracker.new
+    start = Coordinates.new(0, 0)
+
+    tracker.track(start, 8, [1, 0] ) # 8 steps east
+    tracker.track(Coordinates.new(8, 0), 4, [0, -1]) # 4 steps south 
+    tracker.track(Coordinates.new(8, -4), 4, [-1, 0]) # 4 steps west
+    tracker.track(Coordinates.new(4, -4), 8, [0, 1]) # steps north
+
+    assert_includes(tracker.visited, [4, 0])
+    assert_equal([4, 0], tracker.duplicate)
   end
 end

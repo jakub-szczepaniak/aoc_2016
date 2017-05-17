@@ -24,6 +24,16 @@ class TaxiMetricTest < MiniTest::Test
     location = Coordinates.new(1, 1)
     assert_equal 2, location.taxi(Coordinates.new(0, 0))
   end
+  def test_equality_between_same_location
+    location1 = Coordinates.new(0, 0)
+    location2 = Coordinates.new(0, 0)
+    assert_equal true,  location1 == location2
+  end
+  def test_not_equal_for_different_coordinates
+    location1 = Coordinates.new(0, 1)
+    location2 = Coordinates.new(1, 0)
+    assert_equal false,  location1 == location2
+  end
 end
 
 class TestFollowingDirections < MiniTest::Test

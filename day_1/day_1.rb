@@ -8,6 +8,10 @@ class Coordinates
   def taxi(other)
     (other.y - @y).abs + (other.x - @x).abs
   end
+
+  def ==(other)
+    x == other.x && y == other.y
+  end
 end
 
 class Position
@@ -15,8 +19,8 @@ class Position
   FACES = {
     'North' => [0, 1],
     'East' => [1, 0],
-    'West' => [-1, 0],
-    'South' => [0, -1]}
+    'South' => [0, -1],
+    'West' => [-1, 0]}
   def initialize(face = 'North')
     @location = Coordinates.new(0, 0)
     @face = face
@@ -32,7 +36,6 @@ class Position
     @location = Coordinates.new(
       multi[0] * steps.to_i + @location.x,
       multi[1] * steps.to_i + @location.y)
-
   end
 
   def turn_right

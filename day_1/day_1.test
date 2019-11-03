@@ -1,0 +1,10 @@
+package require tcltest
+namespace import ::tcltest::*
+
+source "[file dirname [info script]]/day_1.tcl" 
+
+test test_that_structure_works {
+
+	} -body {
+		to_be_tested
+	} -result true

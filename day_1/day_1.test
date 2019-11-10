@@ -9,8 +9,8 @@ test test_that_structure_works {
 		to_be_tested
 	} -result true
 
-test test_move_l1_from_starting_goes_to_01 {
-	starting from 0,0,N and move to L1 goes to -1,0,W
-} -body {
-	move 0 0 N L 1
-} -result [list -1 0 W]
+test test_move_one_step_right_from_start_faces_East {
+	When we move one step right from (0;0), we face E
+} -setup { set origin { x 0 y 0 face N }
+} -body { move $origin R1
+} -result E

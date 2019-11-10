@@ -2,7 +2,7 @@ proc to_be_tested {} {
 	return true
 }
 
-proc move { position directive} {
+proc move { position direction directive} {
 	lassign [split $directive ""] vector _
 	
 	if {$vector == {R}} {

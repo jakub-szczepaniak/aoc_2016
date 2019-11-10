@@ -11,6 +11,8 @@ test test_that_structure_works {
 
 test test_move_one_step_right_from_start_faces_East {
 	When we move one step right from (0;0), we face E
-} -setup { set origin { x 0 y 0 face N }
-} -body { move $origin R1
+} -setup { set origin [dict create x 0 y 0 face N] 
+} -body { 
+	set result [move $origin R1]
+	dict get $result face
 } -result E

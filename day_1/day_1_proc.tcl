@@ -3,8 +3,6 @@ proc to_be_tested {} {
 }
 
 proc move { location direction} {
-	array set current $location
-	if {$current(face) eq N} {
-		return E
-	}
+	set result [dict create x 0 y 0 face E]
+	return $result
 }

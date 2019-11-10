@@ -16,3 +16,13 @@ test test_move_one_step_right_from_start_faces_East {
 	set result [move $origin R1]
 	dict get $result face
 } -result E
+
+test test_move_one_step_left_from_start_faces_west {
+	When we move left from (0;0), we face West
+} -setup { set origin [dict create x 0 y 0 face N]
+} -body { 
+	set result [move $origin L1]
+	dict get $result face
+} -result W
+
+cleanupTests

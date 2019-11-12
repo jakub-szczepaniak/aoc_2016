@@ -3,16 +3,15 @@ proc to_be_tested {} {
 }
 
 proc move { position direction directive} {
-	lassign [split $directive ""] vector _
+	lassign [split $directive ""] vector length
 	
 	if {$vector == {R}} {
-		set result [dict create x 0 y 0 face E]
-		set new_direction [dict create x 1 y 0]
+		set multiplier [complex 0 -1]	
 	} else {
-		set result [dict create x 0 y 0 face W]
-		set new_direction [dict create x -1 y 0]		
+		set multiplier [complex 0 1]
 	}
-
+	set new_direction [multiply $direction $multiplier]
+	set result [dict create x 0 y 0 face $new_direction]
 	return $result
 }
 

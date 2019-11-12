@@ -13,21 +13,21 @@ test test_move_one_step_right_from_start_faces_East {
 	When we move one step right from (0;0), we face E
 } -setup { 
 	set origin [dict create x 0 y 0 face N]
-	set direction [dict create x 0 y 1]
+	set direction [complex 0 1]
 } -body { 
 	set result [move $origin $direction R1]
 	dict get $result face
-} -result E
+} -result [complex 1 0]
 
 test test_move_one_step_left_from_start_faces_west {
 	When we move left from (0;0), we face West
 } -setup { 
 	set origin [dict create x 0 y 0 face N]
-	set direction [dict create x 0 y 1]
+	set direction [complex 0 1]
 } -body { 
 	set result [move $origin $direction L1]
 	dict get $result face
-} -result W
+} -result [complex -1 0]
 
 test test_create_complex_numbers_as_a_list {
 	to handle vector calculation/rotation, \

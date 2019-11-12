@@ -29,4 +29,29 @@ test test_move_one_step_left_from_start_faces_west {
 	dict get $result face
 } -result W
 
+test test_create_complex_numbers_as_a_list {
+	to handle vector calculation/rotation, \
+	we need complex numbers multiplication
+} -setup {
+} -body { complex 0 1
+} -result {0 1}
+
+test test_multiply {
+	multiply two complex numbers
+} -setup { 
+	set a [complex 1 1]
+	set b [complex 1 1]
+} -body {
+	multiply $a $b
+} -result {0 2}
+
+test test_multiply_more_complicated_numbers {
+	description
+} -setup {
+	set a [complex 3 2]
+	set b [complex 1 4]
+} -body {
+	multiply $a $b
+} -result {-5 14}
+
 cleanupTests

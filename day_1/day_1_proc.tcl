@@ -23,14 +23,14 @@ proc complex { real imaginary} {
 proc multiply { first second} {
 	lassign $first x1 y1
 	lassign $second	x2 y2
-	set new_first [expr ($x1*$x2) - ($y1*$y2)]
-	set new_second [expr $x1*$y2 + $x2*$y1]
-	return [complex $new_first $new_second]
+	return [complex \
+		[expr ($x1*$x2) - ($y1*$y2)] \
+		[expr ($x1*$y2) + ($x2*$y1)]]
 }
 proc add { first second} {
 	lassign $first x1 y1
 	lassign $second x2 y2
-	set new_x [expr $x1+$x2]
-	set new_y [expr	$y1+$y2]
-	return [complex $new_x $new_y]
+	return [complex \
+		[expr $x1+$x2] \
+		[expr $y1+$y2]]
 }

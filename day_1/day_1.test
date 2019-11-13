@@ -12,7 +12,7 @@ test test_that_structure_works {
 test test_move_one_step_right_from_start_faces_East {
 	When we move one step right from (0;0), we face E
 } -setup { 
-	set origin [dict create x 0 y 0]
+	set origin [complex 0 0]
 	set direction [complex 0 1]
 } -body { 
 	set result [move $origin $direction R1]
@@ -22,7 +22,7 @@ test test_move_one_step_right_from_start_faces_East {
 test test_move_one_step_left_from_start_faces_west {
 	When we move left from (0;0), we face West
 } -setup { 
-	set origin [dict create x 0 y 0]
+	set origin [complex 0 0]
 	set direction [complex 0 1]
 } -body { 
 	set result [move $origin $direction L1]
@@ -46,7 +46,7 @@ test test_multiply {
 } -result {0 2}
 
 test test_multiply_more_complicated_numbers {
-	description
+	we try to multiply more complicated complex numbers
 } -setup {
 	set a [complex 3 2]
 	set b [complex 1 4]
@@ -54,4 +54,20 @@ test test_multiply_more_complicated_numbers {
 	multiply $a $b
 } -result {-5 14}
 
+test test_addition_complex_numbers {
+	we try to add two complex numbers
+} -setup {
+	set a [complex 1 1]
+} -body { 
+	add $a $a
+} -result {2 2}
+
+test test_addition_two_more_complicated_complex_numbers {
+	we try to add two more complicated complex numbers
+} -setup {
+	set a [complex 2 3]
+	set b [complex -3 4]
+} -body { 
+	add $a $b
+} -result {-1 7}
 cleanupTests

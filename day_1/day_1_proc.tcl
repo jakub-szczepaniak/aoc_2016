@@ -11,7 +11,8 @@ proc move { position direction directive} {
 		set multiplier [complex 0 1]
 	}
 	set new_direction [multiply $direction $multiplier]
-	set result [dict create x 0 y 0 face $new_direction]
+	set new_position [add $position $new_direction]
+	set result [dict create position $new_position face $new_direction]
 	return $result
 }
 
@@ -25,4 +26,11 @@ proc multiply { first second} {
 	set new_first [expr ($x1*$x2) - ($y1*$y2)]
 	set new_second [expr $x1*$y2 + $x2*$y1]
 	return [complex $new_first $new_second]
+}
+proc add { first second} {
+	lassign $first x1 y1
+	lassign $second x2 y2
+	set new_x [expr $x1+$x2]
+	set new_y [expr	$y1+$y2]
+	return [complex $new_x $new_y]
 }
